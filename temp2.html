@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Burger Haven - Fast Food Menu</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Reset and Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f8f8f8;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header Styles */
+      header {
+        background-color: #e74c3c;
+        color: white;
+        padding: 20px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo i {
+        font-size: 2rem;
+      }
+
+      .logo h1 {
+        font-size: 1.8rem;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 20px;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 5px 10px;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+
+      nav a:hover,
+      nav a.active {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 100px 20px;
+        margin-bottom: 40px;
+      }
+
+      .hero h2 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto 30px;
+      }
+
+      /* Menu Section */
+      .menu-section {
+        margin-bottom: 60px;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 40px;
+        position: relative;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        color: #e74c3c;
+        display: inline-block;
+        padding-bottom: 10px;
+      }
+
+      .section-title h2::after {
+        content: "";
+        position: absolute;
+        width: 80px;
+        height: 3px;
+        background-color: #e74c3c;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .menu-categories {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 40px;
+      }
+
+      .category-btn {
+        background-color: white;
+        border: 2px solid #e74c3c;
+        color: #e74c3c;
+        padding: 10px 20px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .category-btn:hover,
+      .category-btn.active {
+        background-color: #e74c3c;
+        color: white;
+      }
+
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .menu-item {
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .menu-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .item-image {
+        height: 200px;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .item-content {
+        padding: 20px;
+      }
+
+      .item-content h3 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .item-content p {
+        color: #666;
+        margin-bottom: 15px;
+        font-size: 0.95rem;
+      }
+
+      .item-price {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #e74c3c;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #333;
+        color: white;
+        padding: 40px 0 20px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .footer-section h3 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-section h3::after {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 2px;
+        background-color: #e74c3c;
+        bottom: 0;
+        left: 0;
+      }
+
+      .footer-section p,
+      .footer-section a {
+        color: #bbb;
+        margin-bottom: 10px;
+        display: block;
+        text-decoration: none;
+      }
+
+      .footer-section a:hover {
+        color: #e74c3c;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      .social-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: #444;
+        border-radius: 50%;
+        transition: background-color 0.3s;
+      }
+
+      .social-links a:hover {
+        background-color: #e74c3c;
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid #444;
+        color: #bbb;
+        font-size: 0.9rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .hero h2 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .menu-grid {
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav ul {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .menu-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <i class="fas fa-hamburger"></i>
+            <h1>Burger Haven</h1>
+          </div>
+          <nav>
+            <ul>
+              <li><a href="#" class="active">Home</a></li>
+              <li><a href="#burgers">Burgers</a></li>
+              <li><a href="#sides">Sides</a></li>
+              <li><a href="#drinks">Drinks</a></li>
+              <li><a href="#desserts">Desserts</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h2>Delicious Fast Food Made Fresh</h2>
+        <p>
+          Discover our mouth-watering selection of burgers, sides, and desserts.
+          Quality ingredients, amazing taste!
+        </p>
+      </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section container" id="burgers">
+      <div class="section-title">
+        <h2>Our Menu</h2>
+      </div>
+
+      <div class="menu-categories">
+        <button class="category-btn active" data-category="all">
+          All Items
+        </button>
+        <button class="category-btn" data-category="burgers">Burgers</button>
+        <button class="category-btn" data-category="sides">Sides</button>
+        <button class="category-btn" data-category="drinks">Drinks</button>
+        <button class="category-btn" data-category="desserts">Desserts</button>
+      </div>
+
+      <div class="menu-grid">
+        <!-- Burger Items -->
+        <div class="menu-item" data-category="burgers">
+          <div
+            class="item-image"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1398&q=80');
+            "
+          ></div>
+          <div class="item-content">
+            <h3>Classic Cheeseburger</h3>
+            <p>
+              Juicy beef patty with melted cheese, fresh lettuce, tomato, and
+              our special sauce.
+            </p>
+            <div class="item-price">$8.99</div>
+          </div>
+        </div>
+
+        <div class="menu-item" data-category="burgers">
+          <div
+            class="item-image"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1553979459-d2229ba7433b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1368&q=80');
+            "
+          ></div>
+          <div class="item-content">
+            <h3>Bacon Deluxe</h3>
+            <p>
+              Double beef patty, crispy bacon, cheddar cheese, onion rings, and
+              BBQ sauce.
+            </p>
+            <div class="item-price">$12.99</div>
+          </div>
+        </div>
+
+        <div class="menu-item" data-category="burgers">
+          <div
+            class="item-image"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');
+            "
+          ></div>
+          <div class="item-content">
+            <h3>Veggie Supreme</h3>
+            <p>
+              Plant-based patty with avocado, spinach, tomato, and garlic aioli.
+            </p>
+            <div class="item-price">$9.99</div>
+          </div>
+        </div>
+
+        <!-- Sides Items -->
+        <div class="menu-item" data-category="sides">
+          <div
+            class="item-image"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');
+            "
+          ></div>
+          <div class="item-content">
+            <h3>Crispy French Fries</h3>
+            <p>
+              Golden, crispy fries seasoned with our special blend of spices.
+            </p>
+            <div class="item-price">$3.99</div>
+          </div>
+        </div>
+
+        <div class="menu-item" data-category="sides">
+          <div
+            class="item-image"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1626700051175-6818013e1bd4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');
+            "
+          ></div>
+          <div class="item-content">
+            <h3>Onion Rings</h3>
+            <p>Beer-battered onion rings served with ranch dipping sauce.</p>
+            <div class="item-price">$4.99</div>
+          </div>
+        </div>
+
+        <div class="menu-item" data-category="sides">
+          <div
+            class="item-image"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1606755456206-b25206cde27e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');
+            "
+          ></div>
+          <div class="item-content">
+            <h3>Mozzarella Sticks</h3>
+            <p>Breaded mozzarella cheese sticks served with marinara sauce.</p>
+            <div class="item-price">$5.99</div>
+          </div>
+        </div>
+
+        <!-- Drinks Items -->
+        <div class="menu-item" data-category="drinks">
+          <div
+            class="item-image"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');
+            "
+          ></div>
+          <div class="item-content">
+            <h3>Classic Cola</h3>
+            <p>
+              Refreshing cola served ice cold. Available in regular or diet.
+            </p>
+            <div class="item-price">$2.49</div>
+          </div>
+        </div>
+
+        <div class="menu-item" data-category="drinks">
+          <div
+            class="item-image"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');
+            "
+          ></div>
+          <div class="item-content">
+            <h3>Strawberry Milkshake</h3>
+            <p>
+              Creamy milkshake made with real strawberries and vanilla ice
+              cream.
+            </p>
+            <div class="item-price">$4.99</div>
+          </div>
+        </div>
+
+        <div class="menu-item" data-category="drinks">
+          <div
+            class="item-image"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1437418747212-8d9709afab22?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80');
+            "
+          ></div>
+          <div class="item-content">
+            <h3>Iced Coffee</h3>
+            <p>
+              Freshly brewed coffee served over ice with your choice of milk.
+            </p>
+            <div class="item-price">$3.49</div>
+          </div>
+        </div>
+
+        <!-- Desserts Items -->
+        <div class="menu-item" data-category="desserts">
+          <div
+            class="item-image"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');
+            "
+          ></div>
+          <div class="item-content">
+            <h3>Chocolate Brownie</h3>
+            <p>Rich, fudgy chocolate brownie topped with chocolate sauce.</p>
+            <div class="item-price">$4.99</div>
+          </div>
+        </div>
+
+        <div class="menu-item" data-category="desserts">
+          <div
+            class="item-image"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80');
+            "
+          ></div>
+          <div class="item-content">
+            <h3>Apple Pie</h3>
+            <p>
+              Warm apple pie with cinnamon and a flaky crust, served with
+              vanilla ice cream.
+            </p>
+            <div class="item-price">$5.99</div>
+          </div>
+        </div>
+        <div class="menu-item" data-category="desserts">
+          <div
+            class="item-image"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80');
+            "
+          ></div>
+          <div class="item-content">
+            <h3>Apple Pie</h3>
+            <p>
+              Warm apple pie with cinnamon and a flaky crust, served with
+              vanilla ice cream.
+            </p>
+            <div class="item-price">$5.99</div>
+          </div>
+        </div>
+
+        <div class="menu-item" data-category="desserts">
+          <div
+            class="item-image"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1327&q=80');
+            "
+          ></div>
+          <div class="item-content">
+            <h3>Ice Cream Sundae</h3>
+            <p>
+              Vanilla ice cream topped with hot fudge, caramel, nuts, and a
+              cherry.
+            </p>
+            <div class="item-price">$6.99</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>About Us</h3>
+            <p>
+              Burger Haven has been serving delicious fast food since 2005.
+              We're committed to using fresh ingredients and providing excellent
+              service.
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h3>Contact Info</h3>
+            <p>
+              <i class="fas fa-map-marker-alt"></i> 123 Food Street, Cityville
+            </p>
+            <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+            <p><i class="fas fa-envelope"></i> info@burgerhaven.com</p>
+          </div>
+
+          <div class="footer-section">
+            <h3>Opening Hours</h3>
+            <p>Monday - Friday: 10am - 10pm</p>
+            <p>Saturday - Sunday: 9am - 11pm</p>
+          </div>
+
+          <div class="footer-section">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="copyright">
+          <p>&copy; 2023 Burger Haven. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Category Filtering
+      document.addEventListener("DOMContentLoaded", function () {
+        const categoryButtons = document.querySelectorAll(".category-btn");
+        const menuItems = document.querySelectorAll(".menu-item");
+
+        categoryButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            // Remove active class from all buttons
+            categoryButtons.forEach((btn) => btn.classList.remove("active"));
+
+            // Add active class to clicked button
+            this.classList.add("active");
+
+            const category = this.getAttribute("data-category");
+
+            // Show/hide menu items based on category
+            menuItems.forEach((item) => {
+              if (
+                category === "all" ||
+                item.getAttribute("data-category") === category
+              ) {
+                item.style.display = "block";
+              } else {
+                item.style.display = "none";
+              }
+            });
+          });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll("nav a").forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute("href");
+            if (targetId.startsWith("#")) {
+              const targetElement = document.querySelector(targetId);
+              if (targetElement) {
+                window.scrollTo({
+                  top: targetElement.offsetTop - 80,
+                  behavior: "smooth",
+                });
+              }
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
